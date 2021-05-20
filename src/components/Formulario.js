@@ -11,6 +11,8 @@ const Formulario = () => {
         sintomas: ''
     });
 
+    const [ error, actualizarError ] = useState(false);
+
     // Funcion que se ejecuta cada que el usuario escribe un input
     const actualizarState = (e) => {
 
@@ -24,12 +26,38 @@ const Formulario = () => {
     // Extraer los valores, y ponerlos en <input... value={valor} /> para poderlo resetear
     const { mascota, propietario, fecha, hora, sintomas } = cita;
 
+    // Cuando el usuario presiona agregar cita
+    const submitCita = (e) => {
+
+        e.preventDefault(); // con esto evitamos el comportamiento por defecto del submit: poner los parametros en la url
+
+        // Validar
+        if(mascota.trim() === '' || propietario.trim() === '' || fecha.trim() === '' || hora.trim() === '' || sintomas.trim() === '' ) {
+
+            actualizarError(true);
+
+            return; // Para que no continue ejecutandose el codigo hacia abajo
+
+        }
+
+        // Asignar un ID (para mostrar registros repetidos y que tenga un parametro que los diferencie)
+
+        // Crear la cita
+
+        // Reiniciar el form
+
+    }
+
     return (
         <Fragment>
             <h2>Crear Cita</h2>
 
+            { error ? <p className="alerta-error"> Todos los campos son obligatorios </p> : null }
+
             {/* skeleton css Framework syntaxis in className */}
-            <form>
+            <form
+                onSubmit={submitCita}
+            >
 
                 <label>Nombre Mascota</label>
                 <input 
