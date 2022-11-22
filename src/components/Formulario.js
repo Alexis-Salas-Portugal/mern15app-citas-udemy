@@ -6,8 +6,7 @@ const Formulario = ({crearCita}) => {
 
     // Crear State de Citas
     const [cita, actualizarCita] = useState({
-        mascota: '',
-        propietario: '',
+        paciente: '',
         fecha: '',
         hora: '',
         sintomas: ''
@@ -26,7 +25,7 @@ const Formulario = ({crearCita}) => {
     }
 
     // Extraer los valores, y ponerlos en <input... value={valor} /> para poderlo resetear
-    const { mascota, propietario, fecha, hora, sintomas } = cita;
+    const { paciente, fecha, hora, sintomas } = cita;
 
     // Cuando el usuario presiona agregar cita
     const submitCita = (e) => {
@@ -34,7 +33,7 @@ const Formulario = ({crearCita}) => {
         e.preventDefault(); // con esto evitamos el comportamiento por defecto del submit: poner los parametros en la url
 
         // Validar
-        if(mascota.trim() === '' || propietario.trim() === '' || fecha.trim() === '' || hora.trim() === '' || sintomas.trim() === '' ) {
+        if(paciente.trim() === '' || fecha.trim() === '' || hora.trim() === '' || sintomas.trim() === '' ) {
 
             actualizarError(true);
 
@@ -53,8 +52,7 @@ const Formulario = ({crearCita}) => {
 
         // Reiniciar el form, se reinicia gracias a <input... value={valor} />
         actualizarCita({
-            mascota: '',
-            propietario: '',
+            paciente: '',
             fecha: '',
             hora: '',
             sintomas: ''
@@ -73,24 +71,14 @@ const Formulario = ({crearCita}) => {
                 onSubmit={submitCita}
             >
 
-                <label>Nombre Mascota</label>
+                <label>Nombre</label>
                 <input 
                     type="text"
-                    name="mascota"
+                    name="paciente"
                     className="u-full-width"
-                    placeholder="Nombre Mascota"
+                    placeholder="Nombre Paciente"
                     onChange={actualizarState}
-                    value={mascota}
-                />
-
-                <label>Nombre Dueño</label>
-                <input 
-                    type="text"
-                    name="propietario"
-                    className="u-full-width"
-                    placeholder="Nombre Dueño de la mascota"
-                    onChange={actualizarState}
-                    value={propietario}
+                    value={paciente}
                 />
 
                 <label>Fecha</label>
